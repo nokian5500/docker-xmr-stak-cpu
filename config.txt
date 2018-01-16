@@ -1,89 +1,66 @@
+/* 
+ * Number of threads. You can configure them below. Cryptonight uses 2MB of memory, so the optimal setting 
+ * here is the size of your L3 cache divided by 2. Intel mid-to-high end desktop processors have 2MB of L3
+ * cache per physical core. Low end cpus can have 1.5 or 1 MB while Xeons can have 2, 2.5 or 3MB per core.
+ */
+"cpu_thread_num" : 32,
 
 /*
- * pool_address    - Pool address should be in the form "pool.supportxmr.com:3333". Only stratum pools are supported.
- * wallet_address  - Your wallet, or pool login.
- * pool_password   - Can be empty in most cases or "x".
- * use_nicehash    - Limit the nonce to 3 bytes as required by nicehash.
- * use_tls         - This option will make us connect using Transport Layer Security.
- * tls_fingerprint - Server's SHA256 fingerprint. If this string is non-empty then we will check the server's cert against it.
- * pool_weight     - Pool weight is a number telling the miner how important the pool is. Miner will mine mostly at the pool 
- *                   with the highest weight, unless the pool fails. Weight must be an integer larger than 0.
+ * Thread configuration for each thread. Make sure it matches the number above.
+ * low_power_mode - This mode will double the cache usage, and double the single thread performance. It will 
+ *                  consume much less power (as less cores are working), but will max out at around 80-85% of 
+ *                  the maximum performance.
  *
- * We feature pools up to 1MH/s. For a more complete list see M5M400's pool list at www.moneropools.com
+ * no_prefetch -    This mode meant for large pages only. It will generate an error if running on slow memory
+ *                  Some sytems can gain up to extra 5% here, but sometimes it will have no difference or make
+ *                  things slower.
+ *
+ * affine_to_cpu -  This can be either false (no affinity), or the CPU core number. Note that on hyperthreading 
+ *                  systems it is better to assign threads to physical cores. On Windows this usually means selecting 
+ *                  even or odd numbered cpu numbers. For Linux it will be usually the lower CPU numbers, so for a 4 
+ *                  physical core CPU you should select cpu numbers 0-3.
+ *
  */
-"pool_list" :
-[
-	{"pool_address" : "us-east.cryptonight-hub.miningpoolhub.com:20596", "wallet_address" : "3107.ubuntu", "pool_password" : "x", "use_nicehash" : false, "use_tls" : false, "tls_fingerprint" : "", "pool_weight" : 8 },
-	{"pool_address" : "europe.cryptonight-hub.miningpoolhub.com:20596", "wallet_address" : "3107.europe", "pool_password" : "x", "use_nicehash" : false, "use_tls" : false, "tls_fingerprint" : "", "pool_weight" : 7 },
-	{"pool_address" : "asia.cryptonight-hub.miningpoolhub.com:20596", "wallet_address" : "3107.asia", "pool_password" : "x", "use_nicehash" : false, "use_tls" : false, "tls_fingerprint" : "", "pool_weight" : 6 },
-	{"pool_address" : "cryptonight.usa.nicehash.com:3355", "wallet_address" : "36p86FMNr7fvsDgSHT7jmME172qBYxcE82", "pool_password" : "x", "use_nicehash" : true, "use_tls" : false, "tls_fingerprint" : "", "pool_weight" : 5 },
-	{"pool_address" : "cryptonight.eu.nicehash.com:3355", "wallet_address" : "19KBbfuLWNypSLu12Z3e7W35WCQgg7qknL", "pool_password" : "x", "use_nicehash" : true, "use_tls" : false, "tls_fingerprint" : "", "pool_weight" : 4 },
+"cpu_threads_conf" : [ 
+	{ "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 0 },
+	{ "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 1 },
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 2 },
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 3 },
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 4 },
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 5 },
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 6 },
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 7 },
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 8 },
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 9 },
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 10,
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 11},
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 12},
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 12},
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 13},
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 14},
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 15,
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 16},
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 17},
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 18},
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 19},
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 20},
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 21},
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 22},
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 23},
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 24},
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 25},
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 26},
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 27},
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 28},
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 29},
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 30},
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 31},
 ],
 
 /*
- * currency to mine
- * allowed values: 'monero' or 'aeon'
- */
-"currency" : "monero",
-
-/*
- * Network timeouts.
- * Because of the way this client is written it doesn't need to constantly talk (keep-alive) to the server to make 
- * sure it is there. We detect a buggy / overloaded server by the call timeout. The default values will be ok for 
- * nearly all cases. If they aren't the pool has most likely overload issues. Low call timeout values are preferable -
- * long timeouts mean that we waste hashes on potentially stale jobs. Connection report will tell you how long the
- * server usually takes to process our calls.
- *
- * call_timeout - How long should we wait for a response from the server before we assume it is dead and drop the connection.
- * retry_time	- How long should we wait before another connection attempt.
- *                Both values are in seconds.
- * giveup_limit - Limit how many times we try to reconnect to the pool. Zero means no limit. Note that stak miners
- *                don't mine while the connection is lost, so your computer's power usage goes down to idle.
- */
-"call_timeout" : 10,
-"retry_time" : 30,
-"giveup_limit" : 0,
-
-/*
- * Output control.
- * Since most people are used to miners printing all the time, that's what we do by default too. This is suboptimal
- * really, since you cannot see errors under pages and pages of text and performance stats. Given that we have internal
- * performance monitors, there is very little reason to spew out pages of text instead of concise reports.
- * Press 'h' (hashrate), 'r' (results) or 'c' (connection) to print reports.
- *
- * verbose_level - 0 - Don't print anything.
- *                 1 - Print intro, connection event, disconnect event
- *                 2 - All of level 1, and new job (block) event if the difficulty is different from the last job
- *                 3 - All of level 1, and new job (block) event in all cases, result submission event.
- *                 4 - All of level 3, and automatic hashrate report printing
- *
- * print_motd    - Display messages from your pool operator in the hashrate result.
- */
-"verbose_level" : 3,
-"print_motd" : true,
-
-/*
- * Automatic hashrate report
- *
- * h_print_time - How often, in seconds, should we print a hashrate report if verbose_level is set to 4.
- *                This option has no effect if verbose_level is not 4.
- */
-"h_print_time" : 60,
-
-/*
- * Manual hardware AES override
- *
- * Some VMs don't report AES capability correctly. You can set this value to true to enforce hardware AES or
- * to false to force disable AES or null to let the miner decide if AES is used.
- *
- * WARNING: setting this to true on a CPU that doesn't support hardware AES will crash the miner.
- */
-"aes_override" : null,
-
-/*
  * LARGE PAGE SUPPORT
- * Large pages need a properly set up OS. It can be difficult if you are not used to systems administration,
- * but the performance results are worth the trouble - you will get around 20% boost. Slow memory mode is
+ * Lare pages need a properly set up OS. It can be difficult if you are not used to systems administation,
+ * but the performace results are worth the trouble - you will get around 20% boost. Slow memory mode is
  * meant as a backup, you won't get stellar results there. If you are running into trouble, especially
  * on Windows, please read the common issues in the README.
  *
@@ -108,9 +85,9 @@
  * and "* hard memlock 262144". You can also do it Windows-style and simply run-as-root, but this is NOT
  * recommended for security reasons.
  *
- * Memory locking means that the kernel can't swap out the page to disk - something that is unlikely to happen on a
- * command line system that isn't starved of memory. I haven't observed any difference on a CLI Linux system between
- * locked and unlocked memory. If that is your setup see option "no_mlck".
+ * Memory locking means that the kernel can't swap out the page to disk - something that is unlikey to happen on a 
+ * command line system that isn't starved of memory. I haven't observed any difference on a CLI Linux system between 
+ * locked and unlocked memory. If that is your setup see option "no_mlck". 
  */
 
 /*
@@ -124,37 +101,51 @@
 "use_slow_memory" : "warn",
 
 /*
- * TLS Settings
- * If you need real security, make sure tls_secure_algo is enabled (otherwise MITM attack can downgrade encryption
- * to trivially breakable stuff like DES and MD5), and verify the server's fingerprint through a trusted channel.
- *
- * tls_secure_algo - Use only secure algorithms. This will make us quit with an error if we can't negotiate a secure algo.
+ * pool_address	  - Pool address should be in the form "pool.supportxmr.com:3333". Only stratum pools are supported.
+ * wallet_address - Your wallet, or pool login.
+ * pool_password  - Can be empty in most cases or "x".
  */
-"tls_secure_algo" : true,
+"pool_address" : "us-east.cryptonight-hub.miningpoolhub.com:20596",
+"wallet_address" : "3107.dock",
+"pool_password" : "x",
 
 /*
- * Daemon mode
+ * Network timeouts.
+ * Because of the way this client is written it doesn't need to constantly talk (keep-alive) to the server to make 
+ * sure it is there. We detect a buggy / overloaded server by the call timeout. The default values will be ok for 
+ * nearly all cases. If they aren't the pool has most likely overload issues. Low call timeout values are preferable -
+ * long timeouts mean that we waste hashes on potentially stale jobs. Connection report will tell you how long the
+ * server usually takes to process our calls.
  *
- * If you are running the process in the background and you don't need the keyboard reports, set this to true.
- * This should solve the hashrate problems on some emulated terminals.
+ * call_timeout - How long should we wait for a response from the server before we assume it is dead and drop the connection.
+ * retry_time	- How long should we wait before another connection attempt.
+ *                Both values are in seconds.
  */
-"daemon_mode" : false,
+"call_timeout" : 10,
+"retry_time" : 10,
 
 /*
- * Buffered output control.
- * When running the miner through a pipe, standard output is buffered. This means that the pipe won't read
- * each output line immediately. This can cause delays when running in background.
- * Set this option to true to flush stdout after each line, so it can be read immediately.
+ * Output control.
+ * Since most people are used to miners printing all the time, that's what we do by default too. This is suboptimal
+ * really, since you cannot see errors under pages and pages of text and performance stats. Given that we have internal
+ * performance monitors, there is very little reason to spew out pages of text instead of concise reports.
+ * Press 'h' (hashrate), 'r' (results) or 'c' (connection) to print reports.
+ *
+ * verbose_level - 0 - Don't print anything. 
+ *                 1 - Print intro, connection event, disconnect event
+ *                 2 - All of level 1, and new job (block) event if the difficulty is different from the last job
+ *                 3 - All of level 1, and new job (block) event in all cases, result submission event.
+ *                 4 - All of level 3, and automatic hashrate report printing 
  */
-"flush_stdout" : false,
+"verbose_level" : 3,
 
 /*
- * Output file
+ * Automatic hashrate report
  *
- * output_file  - This option will log all output to a file.
- *
+ * h_print_time - How often, in seconds, should we print a hashrate report if verbose_level is set to 4.
+ *                This option has no effect if verbose_level is not 4.
  */
-"output_file" : "",
+"h_print_time" : 60,
 
 /*
  * Built-in web server
@@ -166,19 +157,6 @@
  */
 "httpd_port" : 0,
 
-/*
- * HTTP Authentication
- *
- * This allows you to set a password to keep people on the Internet from snooping on your hashrate.
- * Keep in mind that this is based on HTTP Digest, which is based on MD5. To a determined attacker
- * who is able to read your traffic it is as easy to break a bog door latch.
- *
- * http_login - Login. Empty login disables authentication.
- * http_pass  - Password.
- */ 
-"http_login" : "",
-"http_pass" : "",
- 
 /*
  * prefer_ipv4 - IPv6 preference. If the host is available on both IPv4 and IPv6 net, which one should be choose?
  *               This setting will only be needed in 2020's. No need to worry about it now.
